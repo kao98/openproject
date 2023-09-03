@@ -41,8 +41,6 @@ class Company < ApplicationRecord
   def owning_users
     return [owner] if active_parents.empty?
 
-    active_parents.map do |parent|
-      parent.owning_users
-    end.flatten
+    active_parents.map(&:owning_users).flatten
   end
 end
