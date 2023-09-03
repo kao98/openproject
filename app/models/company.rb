@@ -29,7 +29,13 @@
 class Company < ApplicationRecord
   belongs_to :owner, class_name: "User"
 
-  has_many :active_shares, -> { where(active: true) }, class_name: "Share", foreign_key: :child_id
+  has_many :active_shares,
+           -> { where(active: true) },
+           class_name: "Share",
+           foreign_key: :child_id,
+           dependent: :destroy,
+           inverse_of: :child
+
   has_many :active_parents, through: :active_shares, source: :parent
 
   def owning_users

@@ -57,13 +57,13 @@ module API
         end
 
         collection :owningUsers,
-          embedded: true,
-          exec_context: :decorator,
-          getter: ->(*) {
-            represented.owning_users.map do |owner|
-              Users::UserRepresenter.create(owner, current_user:)
-            end
-          }
+                   embedded: true,
+                   exec_context: :decorator,
+                   getter: ->(*) {
+                     represented.owning_users.map do |owner|
+                       Users::UserRepresenter.create(owner, current_user:)
+                     end
+                   }
       end
     end
   end
