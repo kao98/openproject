@@ -192,7 +192,6 @@ module API
             "#{work_packages_by_project(project_id)}/form"
           end
 
-          index :company
           show :company
 
           def self.custom_action(id)
